@@ -162,7 +162,7 @@ export default function Home() {
       <div className='mb-4'>
         {/* Increase the width of the input field */}
         <input
-          className='p-1 border rounded w-[40rem] mr-4 font-hanken text-3xl' // <-- Adjusted width using `w-60`
+          className='p-1 py-2 border rounded w-[40rem] text-center font-hanken text-3xl' // <-- Adjusted width using `w-60`
           type='text'
           value={userAnswer}
           onChange={(e) => setUserAnswer(e.target.value)}
