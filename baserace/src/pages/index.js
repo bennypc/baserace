@@ -113,52 +113,72 @@ export default function Home() {
 
   return (
     <div className='p-10 bg-gray-100 h-screen flex flex-col justify-center items-center'>
-      <h1 className='text-4xl font-bold mb-6'>BaseRace by Bentot</h1>
-      <p className='mb-2 text-xl'>
-        Time left: <span className='font-bold'>{timer}</span> seconds
-      </p>
-      <ProgressBar timer={timer} />
-      <p className='mb-4 text-xl mt-4'>
-        Score: <span className='font-bold'>{score}</span>
-      </p>
-      <div className='mb-4'>
-        Difficulty:
-        <select
-          className='ml-2 p-1 border rounded'
-          value={difficulty}
-          onChange={(e) => setDifficulty(e.target.value)}
-        >
-          <option value='easy'>Easy</option>
-          <option value='medium'>Medium</option>
-          <option value='hard'>Hard</option>
-        </select>
+      <div className='flex'>
+        <img src='bentot1.svg' />
+        <h1 className='text-4xl font-bold tracking-wider mx-8 mt-8'>
+          BaseRace by Bentot
+        </h1>{' '}
+        <img src='bentot2.svg' />
       </div>
-      <p className='mb-4 text-xl'>
+
+      <p className='mt-4 font-hanken text-xl uppercase tracking-wider'>
+        How fast can you convert between hex, decimal, and binary?
+      </p>
+
+      <ProgressBar timer={timer} />
+
+      <div className='flex mt-8 text-xl font-hanken font-bold'>
+        <div className=''>DIFFICULTY</div>
+        <p className='mx-40 text-xl font-hanken font-bold'>TIMER</p>
+        <p className='mb-4 text-xl font-hanken font-bold'>SCORE</p>
+      </div>
+
+      <div className='flex'>
+        <div className=''>
+          <select
+            className='ml-2 p-1 border rounded text-3xl'
+            value={difficulty}
+            onChange={(e) => setDifficulty(e.target.value)}
+          >
+            <option value='easy'>E</option>
+            <option value='medium'>M</option>
+            <option value='hard'>H</option>
+          </select>
+        </div>
+
+        <p className='text-3xl mx-48'>
+          <span className='font-bold'>{timer}</span>s
+        </p>
+
+        <p className='mb-4 text-3xl'>
+          <span className='font-bold'>{score}</span>
+        </p>
+      </div>
+
+      <p className='mb-4 text-3xl mt-12 tracking-wider font-hanken'>
         Convert <span className='font-bold'>{currentFormat}</span> {number} to{' '}
         <span className='font-bold'>{targetFormat}</span>
       </p>
       <div className='mb-4'>
+        {/* Increase the width of the input field */}
         <input
-          className='p-1 border rounded mr-4'
+          className='p-1 border rounded w-[40rem] mr-4 font-hanken text-3xl' // <-- Adjusted width using `w-60`
           type='text'
           value={userAnswer}
           onChange={(e) => setUserAnswer(e.target.value)}
           onKeyDown={handleKeyDown}
         />
-        <button
-          disabled={!isGameActive}
-          className='py-1 px-4 bg-blue-500 text-white rounded hover:bg-blue-700'
-          onClick={checkAnswer}
-        >
-          Submit
-        </button>
         <p className='text-red-500 mt-2'>{feedback}</p>
-        <button
-          className='py-1 px-4 bg-green-500 text-white rounded hover:bg-green-700 mt-4'
-          onClick={isGameActive ? resetGame : startGame}
-        >
-          {isGameActive ? 'Reset Game' : 'Start Game'}
-        </button>
+        <div className='flex justify-center w-full mt-4'>
+          {' '}
+          {/* <-- Centered the button */}
+          <button
+            className='py-2 px-32 mt-4 text-lg bg-[#4E80EE] text-white font-hanken font-medium tracking-wider rounded-xl hover:bg-blue-700'
+            onClick={isGameActive ? resetGame : startGame}
+          >
+            {isGameActive ? 'RESET GAME' : 'START GAME'}
+          </button>
+        </div>
       </div>
     </div>
   );
@@ -166,9 +186,9 @@ export default function Home() {
 
 function ProgressBar({ timer }) {
   return (
-    <div className='w-[50%] bg-gray-300 h-4 rounded'>
+    <div className='w-[50%] bg-gray-300 h-6 rounded-3xl mt-8'>
       <div
-        className='bg-red-500 h-4 rounded transition-all duration-1000'
+        className='bg-blue-500 h-6 rounded-3xl transition-all duration-1000'
         style={{ width: `${(timer / 60) * 100}%` }}
       ></div>
     </div>
