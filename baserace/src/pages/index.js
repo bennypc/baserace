@@ -41,6 +41,12 @@ export default function Home() {
   const [feedback, setFeedback] = useState('');
   const [isGameActive, setIsGameActive] = useState(false);
 
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter' && isGameActive) {
+      checkAnswer();
+    }
+  };
+
   const generateNewChallenge = () => {
     let newNum = getRandomNumber(difficulties[difficulty]);
     const newFormat = getRandomFormat();
@@ -137,6 +143,7 @@ export default function Home() {
           type='text'
           value={userAnswer}
           onChange={(e) => setUserAnswer(e.target.value)}
+          onKeyDown={handleKeyDown}
         />
         <button
           disabled={!isGameActive}
